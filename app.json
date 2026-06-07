@@ -1,11 +1,12 @@
 {
   "expo": {
-    "name": "meeting-scorer",
+    "name": "会議辛口採点",
     "slug": "meeting-scorer",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "scheme": "meeting-scorer",
     "ios": {
       "supportsTablet": true
     },
@@ -19,7 +20,11 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
+      "bundler": "metro",
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
