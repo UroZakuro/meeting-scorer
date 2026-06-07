@@ -1,7 +1,7 @@
 import {
-  View, Text, ScrollView, StyleSheet, TouchableOpacity, LayoutChangeEvent,
+  View, Text, ScrollView, StyleSheet, TouchableOpacity,
 } from "react-native";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useMeetingStore } from "../src/store/useMeetingStore";
 import { AxisResult } from "../src/types";
@@ -72,7 +72,6 @@ export default function ResultScreen() {
   const { overallScore, oneLineVerdict, wasMeetingNecessary,
           couldHaveBeenShortenedMinutes, axes, improvements } = evaluation;
 
-  const [chartWidth, setChartWidth] = useState(320);
   const { maybeShow } = useInterstitialAd();
   useEffect(() => { maybeShow(); }, []);
 
@@ -127,11 +126,8 @@ export default function ResultScreen() {
               </Text>
             </View>
           )}
-          <View
-            style={styles.chartCard}
-            onLayout={(e: LayoutChangeEvent) => setChartWidth(e.nativeEvent.layout.width - 24)}
-          >
-            <SpeakerChart stats={speakerStats} width={chartWidth} />
+          <View style={styles.chartCard}>
+            <SpeakerChart stats={speakerStats} />
           </View>
         </>
       )}
