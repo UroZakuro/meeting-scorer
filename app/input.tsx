@@ -5,9 +5,8 @@ import {
 import { useState } from "react";
 import { useRouter } from "expo-router";
 import * as DocumentPicker from "expo-document-picker";
-import {
-  useAudioRecorder, RecordingPresets, requestRecordingPermissionsAsync,
-} from "expo-audio";
+import { requestRecordingPermissionsAsync } from "expo-audio";
+import { useAudioRecorderCompat } from "../src/lib/useAudioRecorderCompat";
 import { parseTranscript, calcSpeakerStats } from "../src/lib/analyze";
 import { callEvaluateApi, callTranscribeApi } from "../src/lib/api";
 import { useMeetingStore } from "../src/store/useMeetingStore";
@@ -45,7 +44,7 @@ export default function InputScreen() {
   const [isRecording, setIsRecording] = useState(false);
   const [recordingUri, setRecordingUri] = useState<string | null>(null);
   const [selectedFileName, setSelectedFileName] = useState<string | null>(null);
-  const audioRecorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
+  const audioRecorder = useAudioRecorderCompat();
 
   function loadSample() {
     setTranscript(SAMPLE_TRANSCRIPT);
